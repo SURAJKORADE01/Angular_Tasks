@@ -1,0 +1,21 @@
+<div style="text-align: center;">
+    <h2>Fill in the information below and press the "Create" button to add data to the database.</h2>
+</div>
+
+<div style="text-align: center;"> <br>
+    <h5>Name : <input type="text" placeholder="Enter the Batch Name" [(ngModel)] = "Name"></h5><br>
+    <h5>Duration : <input type="text" placeholder="Enter the Batch Duration" [(ngModel)] = "Duration"></h5> <br>
+    <h5>Fees : <input type="text" placeholder="Enter the Batch Fees" [(ngModel)] = "Fees"></h5> <br>
+    
+    <button type="button" class="btn btn-primary" (click) = "Adddata()">Create</button>
+</div>
+
+<div *ngIf = "bIsDataInserted">
+    <div style="text-align: center;"> <br>
+        <h2>Data has been inserted successfully. </h2>
+        <h2>The inserted data is:</h2>
+        <div *ngFor = "let value of batches" style="text-align: center;"> <br>
+            <ul><h3>{{value.Name}} - {{value.Duration}} - {{value.Fees}}</h3></ul>
+        </div>
+    </div>
+</div>

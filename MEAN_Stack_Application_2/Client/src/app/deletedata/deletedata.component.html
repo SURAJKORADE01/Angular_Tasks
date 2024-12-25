@@ -1,0 +1,17 @@
+<h2 style="text-align: center;">Press the "Delete" button below to delete data from the database.</h2>
+
+<div style="text-align: center;"> <br>
+    <h5>Batch Name : <input type="text" placeholder="Enter the Batch Name" [(ngModel)] = "BatchName"></h5><br>
+    <button type="button" class="btn btn-primary" (click) = "Delete()">Delete</button>
+</div>
+
+<div *ngIf = "bIsDataDeleted">
+    <div style="text-align: center;"> <br>
+        <h2>Data is deleted successfully.</h2>
+        <h2>The data after deletion is as follows:</h2>
+        <div *ngFor = "let value of batches" style="text-align: center;"> <br>
+            <ul><h3>{{value.Name}} - {{value.Duration}} - {{value.Fees}}</h3></ul>
+        </div>
+    </div>
+</div>
+

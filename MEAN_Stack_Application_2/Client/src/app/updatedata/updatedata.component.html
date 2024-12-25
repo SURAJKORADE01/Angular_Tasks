@@ -1,0 +1,29 @@
+<h2 style="text-align: center;">Press the "Update" button below to update data in the database.</h2>
+
+<div style="text-align: center;"> <br>
+
+    <h5>
+        <label for="key">Select filed to change: &nbsp;</label>
+        <select id="key" [(ngModel)] = "selectKey">
+        <option id="name">Name</option>
+        <option id="duration">Duration</option>
+        <option id="fees">Fees</option>
+        </select>
+    </h5>
+
+    <h5>Enter the new data : <input type="text" placeholder="Enter the new value" [(ngModel)] = "changeData"></h5>
+    
+    <h5>Enter the Batch Name for updation: <input type="text" placeholder="Enter the Batch Name" [(ngModel)] = "Name"></h5><br>
+
+    <button type="button" class="btn btn-primary" (click) = "UpdateData()">Update</button>
+</div>
+
+<div *ngIf = "dataIsUpdated">
+    <div style="text-align: center;"> <br>
+        <h2>The data has been updated successfully.</h2>
+        <h2>The updated data is:</h2>
+        <div *ngFor = "let value of batches" style="text-align: center;"> <br>
+            <ul><h3>{{value.Name}} - {{value.Duration}} - {{value.Fees}}</h3></ul>
+        </div>
+    </div>
+</div>

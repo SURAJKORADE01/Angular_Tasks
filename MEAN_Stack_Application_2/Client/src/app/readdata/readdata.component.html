@@ -1,0 +1,9 @@
+<h2 style="text-align: center;">Press the "Read" button below to retrieve data from the database.</h2>
+
+<div style="text-align: center;">
+    <button type="button" class="btn btn-primary" (click) = "ReadDataFromDatabase()">Read</button>
+</div>
+
+<div *ngFor = "let value of batches" style="text-align: center;"> <br>
+    <ul><h3>{{value.Name}} - {{value.Duration}} - {{value.Fees}}</h3></ul>
+</div>

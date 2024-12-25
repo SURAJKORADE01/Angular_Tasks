@@ -1,0 +1,92 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "name": "Regency",
+      "address": "Satara Road",
+      "email": "Regency@gmail.com",
+      "services": "Thai + Japanese",
+      "mobile": 9090787856
+    },
+    {
+      "id": "2",
+      "name": "Grand Hayat",
+      "address": "Pune 4",
+      "email": "Hayat@gmail.com",
+      "services": "Indian",
+      "mobile": 8087808780
+    },
+    {
+      "id": "3",
+      "name": "Le Meridian",
+      "address": "Pune Mumbai highway",
+      "email": "Meridian@gmail.com",
+      "services": "Chinese",
+      "mobile": 9823982398
+    },
+    {
+      "id": "4",
+      "name": "Shereton Grand",
+      "address": "Koregaon park",
+      "email": "GrandInfo@gmail.com",
+      "services": "Continental",
+      "mobile": 7020702070
+    },
+    {
+      "id": "5",
+      "name": "Radha Krishna",
+      "address": "Bharti Vidyapeeth",
+      "email": "radhakrishna@gmail.com",
+      "services": "South Indian",
+      "mobile": 8771545655
+    },
+    {
+      "id": "6",
+      "name": "Panchami",
+      "address": "Near Swargate",
+      "email": "pachami@gmail.com",
+      "services": "Italian",
+      "mobile": 8796541236
+    }
+  ],
+  "signup": [
+    {
+      "name": "Taj",
+      "email": "TajManagement@gmail.com",
+      "mobile": 9977997799,
+      "password": "password@123",
+      "id": "1"
+    },
+    {
+      "name": "Admin",
+      "email": "Marvellous@gmail.com",
+      "mobile": 7020717020,
+      "password": "Admin@123",
+      "id": "2"
+    },
+    {
+      "id": "96ea",
+      "name": "Suraj",
+      "email": "surajkorade5456@gmail.com",
+      "mobile": 1234567890,
+      "password": "admin@123"
+    }
+  ],
+  "Contacts": [
+    {
+      "Name": "Rahul Joshi",
+      "Mobile": 1234567890,
+      "id": "7e1f"
+    },
+    {
+      "Name": "Sandesh Kadam",
+      "Mobile": 9876543210,
+      "id": "6dbc"
+    },
+    {
+      "Name": "Rohit Modi",
+      "Mobile": 6549087123,
+      "id": "9bb6"
+    }
+  ]
+}

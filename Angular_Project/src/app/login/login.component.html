@@ -1,0 +1,32 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+          <div class="container vh-100 d-flex justify-content-center align-items-center">
+            <div class="card p-4">
+                <div class="text-center">
+                    <h1>Marvellous Restaurant Login Portal</h1>
+                    <h5>You can login here!</h5>
+                </div>
+                <form [formGroup]="loginForm" (ngSubmit)="logIn()"> 
+                    <div class="mb-3">
+                        <label class="form-label">Email address</label>
+                        <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email address">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+                <div class="text-center mt-3">
+                    <a style="color: blue;" routerLink="/signup">New User? Click to Sign up</a>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+</div>
