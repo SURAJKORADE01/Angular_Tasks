@@ -7,20 +7,20 @@
           <div style="display: flex; align-items: center; margin-bottom: 1px;">
             <h5 style="margin-right: 10px;">from</h5>
             <mat-radio-group aria-label="Select an option" style="display: flex; padding-right: 20px;">
-              <mat-radio-button value="iBinary" style="margin-right: 15px; padding-right: 5px;" (click) = "FromMethod('Binary')">Binary</mat-radio-button>
-              <mat-radio-button value="iOctal" style="margin-right: 15px;" (click) = "FromMethod('Octal')">Octal</mat-radio-button>
-              <mat-radio-button value="iDecimal" style="margin-right: 15px;" (click) = "FromMethod('Decimal')">Decimal</mat-radio-button>
-              <mat-radio-button value="iHexadecimal" (click) = "FromMethod('Hexadecimal')">Hex</mat-radio-button>
+              <mat-radio-button style="margin-right: 15px; padding-right: 5px;" (click) = "FromMethod('Binary')">Binary</mat-radio-button>
+              <mat-radio-button style="margin-right: 15px;" (click) = "FromMethod('Octal')">Octal</mat-radio-button>
+              <mat-radio-button style="margin-right: 15px;" (click) = "FromMethod('Decimal')">Decimal</mat-radio-button>
+              <mat-radio-button (click) = "FromMethod('Hexadecimal')">Hex</mat-radio-button>
             </mat-radio-group>
           </div>
   
           <div style="display: flex; align-items: center; margin-bottom: 15px;">
             <h5 style="margin-right: 27px;">to</h5>
             <mat-radio-group aria-label="Select an option" style="display: flex;">
-              <mat-radio-button value="iBinary" style="margin-right: 19px;" (click) = "ToMethod('Binary')">Binary</mat-radio-button>
-              <mat-radio-button value="iOctal" style="margin-right: 15px;" (click) = "ToMethod('Octal')">Octal</mat-radio-button>
-              <mat-radio-button value="iDecimal" style="margin-right: 15px;" (click) = "ToMethod('Decimal')">Decimal</mat-radio-button>
-              <mat-radio-button value="iHexadecimal" (click) = "ToMethod('Hexadecimal')">Hex</mat-radio-button>
+              <mat-radio-button style="margin-right: 19px;" (click) = "ToMethod('Binary')">Binary</mat-radio-button>
+              <mat-radio-button style="margin-right: 15px;" (click) = "ToMethod('Octal')">Octal</mat-radio-button>
+              <mat-radio-button style="margin-right: 15px;" (click) = "ToMethod('Decimal')">Decimal</mat-radio-button>
+              <mat-radio-button (click) = "ToMethod('Hexadecimal')">Hex</mat-radio-button>
             </mat-radio-group>
           </div>
 
