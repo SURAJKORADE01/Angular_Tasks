@@ -2,23 +2,26 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { loginDataModel } from './login.model';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone : false
-
 })
 
 export class LoginComponent implements OnInit 
 {
   public lemail : string;
   public lpass : string;
-  public bFlag : boolean = true;
+
+  public data : any;
 
   loginForm!: FormGroup;
-  constructor(private formbuilder: FormBuilder, private _http:HttpClient, private _router:Router ) 
+  loginDataCheck : loginDataModel = new loginDataModel;
+
+  constructor(private formbuilder: FormBuilder, private _http:HttpClient, private _router:Router) 
   {
     this.lemail = "";
     this.lpass = "";
@@ -34,19 +37,28 @@ export class LoginComponent implements OnInit
 
   public CheckCredential(checkemail : string, checkpassword : string)
   {
-    if((checkemail == "surajkorade5456@gmail.com") && (checkpassword == "Suraj@01012003") || 
-       (checkemail == "admin@gmail.com") && (checkpassword == "Admin@123"))
-    {
-      alert("Marvellous" + ' logged in successfully');
+    this.loginDataCheck.email = checkemail;
+    this.loginDataCheck.password = checkpassword;
+
+    this._http.get<any>("http://localhost:3000/signup").subscribe(res=>{
+
+      const user = res.find((user: any)=>
+        user.email === this.loginDataCheck.email && user.password === this.loginDataCheck.password
+      );
+
+      if(user)
+      {
+        alert("Marvellous" + ' logged in successfully');
           this._router.navigate(['/restaurent']);
           this.loginForm.reset();
-    }  
+      }
 
-    else
-    {
-      alert("Please enter the valid credentials.");
-      this.loginForm.reset();
-    }
+      else
+      {
+        alert("Please enter valid credentials. If you are a new user, please sign up first.");
+        this.loginForm.reset();
+      }
+    });
   }
 
   logIn() 

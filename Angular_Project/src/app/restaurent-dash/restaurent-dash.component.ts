@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder  } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../shared/api.service';
-import {RestaurentData} from './restaurent.model';
+import { RestaurentData } from './restaurent.model';
 
 @Component({
   selector: 'app-restaurent-dash',
@@ -16,16 +16,16 @@ export class RestaurentDashComponent implements OnInit {
   allRestaurentData: any;
   showAdd!:boolean;
   showBtn!:boolean;
-
+  
   constructor(private formbuilder: FormBuilder, private api:ApiService) { }
 
   ngOnInit(): void {
     this.formValue = this.formbuilder.group({
-      name: [''],
-      email: [''],
-      mobile: [''],
-      address: [''],
-      services: [''],
+      name: ['',[Validators.required, Validators.pattern('^[a-zA-Z]+(?: +[a-zA-Z0-9]+)*$')]],
+      email: ['',[Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
+      mobile: ['',[Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]+$')]],
+      address: ['',[Validators.required, Validators.maxLength(100),Validators.pattern('^[a-zA-Z0-9.,-/(){} ]*$')]],
+      services: ['',[Validators.required, Validators.maxLength(50) ,Validators.pattern('^[a-zA-Z0-9,-/ ]*$')]],
     })
     this.getAllData();
   }
@@ -39,31 +39,57 @@ export class RestaurentDashComponent implements OnInit {
  
   addRestaurent()
   {
-    this.restaurentModelObj = new RestaurentData;
+    if(this.formValue.value.name == null)
+    {
+      alert("Restaurant name is required. Please enter the restaurant name."); 
+    }
 
-    const iMaxId = this.allRestaurentData.length > 0 ? Math.max(...this.allRestaurentData.map((resto : any) => resto.id)) : 0;
+    else if(this.formValue.value.email == null)
+    {
+      alert("Restaurant email address is required. Please provide a valid email address.");
+    }
 
-    this.restaurentModelObj.id = (iMaxId + 1).toString();
-    this.restaurentModelObj.name = this.formValue.value.name;
-    this.restaurentModelObj.email = this.formValue.value.email;
-    this.restaurentModelObj.mobile = this.formValue.value.mobile;
-    this.restaurentModelObj.address = this.formValue.value.address;
-    this.restaurentModelObj.services = this.formValue.value.services;
+    else if(this.formValue.value.mobile == null)
+    {
+      alert("Restaurant mobile number is required. Please provide a valid mobile number.");
+    }
+    
+    else if(this.formValue.value.address == null)
+    {
+      alert("Restaurant address is required. Please enter the restaurant's address.");
+    }
+    
+    else if(this.formValue.value.services == null)
+    {
+      alert("Restaurant service details are required. Please specify the services offered.");
+    }
 
-    this.api.postRestaurent(this.restaurentModelObj).subscribe(res => {
-      console.log(res);
-      alert("Restaurent Added Successfully");
-      this.formValue.reset();
+    else
+    {
+      this.restaurentModelObj = new RestaurentData;
+      const iMaxId = this.allRestaurentData.length > 0 ? Math.max(...this.allRestaurentData.map((resto : any) => resto.id)) : 0;
+      this.restaurentModelObj.id = (iMaxId + 1).toString();
+      this.restaurentModelObj.name = this.formValue.value.name;
+      this.restaurentModelObj.email = this.formValue.value.email;
+      this.restaurentModelObj.mobile = this.formValue.value.mobile;
+      this.restaurentModelObj.address = this.formValue.value.address;
+      this.restaurentModelObj.services = this.formValue.value.services;
 
-      let ref= document.getElementById('close');
-      ref?.click();
+      this.api.postRestaurent(this.restaurentModelObj).subscribe(res => {
+        console.log(res);
+        alert("Restaurent Added Successfully");
+        this.formValue.reset();
 
-      this.getAllData();
+        let ref= document.getElementById('close');
+        ref?.click();
 
-    }, err=>{
-      console.log(err);
-      alert("Restaurent Added Failed!");
-    })
+        this.getAllData();
+      
+      }, err=>{
+        console.log(err);
+        alert("Restaurent Added Failed!");
+      })
+    }
   }
 
   getAllData()
@@ -113,10 +139,7 @@ export class RestaurentDashComponent implements OnInit {
       ref?.click();
 
       this.getAllData();
-
     })
-    
   }
 
-  
 }

@@ -23,7 +23,7 @@
       </thead>
       <tbody>
           <tr *ngFor="let data of allRestaurentData">
-              <td>{{data.id}}</td>
+              <td style="padding-left: 50px;">{{data.id}}</td>
               <td>{{data.name}}</td>
               <td>{{data.email}}</td>
               <td>{{data.address}}</td>
@@ -47,24 +47,72 @@
         <div class="modal-body">
             <form [formGroup]="formValue">
                 <div class="mb-3">
-                  <label class="form-label">Name</label>
-                  <input type="text" class="form-control" formControlName="name" placeholder="Restaurent Name">
+                  <label class="form-label">Name <span style="color: red;">*</span></label>
+                  <input [class.is-invalid]="formValue.get('name')?.invalid && formValue.get('name')?.touched" type="text" class="form-control" formControlName="name" placeholder="Enter Restaurent Name">
+                  
+                  <div *ngIf="formValue.get('name')?.hasError('pattern') && formValue.get('name')?.touched" class="text-danger">
+                    Name must only contain uppercase or lowercase letters.
+                  </div>
+                  
+                  <div *ngIf = "formValue.get('name')?.hasError('required') && formValue.get('name')?.touched" class="text-danger">
+                    Name is required.
+                  </div>
+
                 </div>
+
                 <div class="mb-3">
-                  <label  class="form-label">Email</label>
-                  <input type="email" class="form-control" formControlName="email"  placeholder="abcd@gmail.com">
+                  <label  class="form-label">Email address<span style="color: red;">*</span></label>
+                  <input [class.is-invalid] = "formValue.get('email')?.invalid && formValue.get('email')?.touched" type="email" class="form-control" formControlName="email"  placeholder="abcd@gmail.com">
+                
+                  <div *ngIf = "formValue.get('email')?.hasError('required') && formValue.get('email')?.touched" class="text-danger">
+                    Email is required.
+                  </div>
+
+                  <div *ngIf="formValue.get('email')?.hasError('pattern') && formValue.get('email')?.touched" class="text-danger">
+                    Invalid email format
+                  </div>
                 </div>
+                
                 <div class="mb-3">
-                    <label class="form-label">Address</label>
-                    <input type="text" class="form-control" formControlName="address"  placeholder="Abc road , near abc , pin: 12546">
+                  <label class="form-label">Address <span style="color: red;">*</span></label>
+                  <input [class.is-invalid]="formValue.get('address')?.invalid && formValue.get('address')?.touched" type="text" class="form-control" formControlName="address"  placeholder="Abc road , near abc , pin: 12546">
+              
+                  <div *ngIf="formValue.get('address')?.hasError('required') && formValue.get('address')?.touched" class="text-danger">
+                    Address is required.
+                  </div>
+                  
+                  <div *ngIf="formValue.get('address')?.hasError('maxlength') && formValue.get('address')?.touched" class="text-danger">
+                    Address must not exceed 100 characters.
+                  </div>
                 </div>
+
                 <div class="mb-3">
-                    <label  class="form-label">Mobile</label>
-                    <input type="number" class="form-control" formControlName="mobile"  placeholder="+91-1234567890">
-                </div>
+                  <label class="form-label">Mobile Number <span style="color: red;">*</span></label>
+                  <input [class.is-invalid]="formValue.get('mobile')?.invalid && formValue.get('mobile')?.touched" type="text" class="form-control" formControlName="mobile"  placeholder="Enter mobile number">
+              
+                  <div *ngIf="formValue.get('mobile')?.hasError('required') && formValue.get('mobile')?.touched" class="text-danger">
+                    Phone number is required.
+                  </div>
+                  <div *ngIf = "(formValue.get('mobile')?.hasError('minlength') || formValue.get('mobile')?.hasError('maxlength')) && formValue.get('mobile')?.touched" class="text-danger">
+                    Phone number must be exactly 10 digits long.
+                  </div>
+
+                  <div *ngIf="formValue.get('mobile')?.hasError('pattern') && formValue.get('mobile')?.touched" class="text-danger">
+                      Phone number must contain only digits.
+                  </div>
+                 </div>
+                
                 <div class="mb-3">
-                    <label  class="form-label">Services</label>
-                    <input type="text" class="form-control" formControlName="services"  placeholder="chai , coffee">
+                  <label  class="form-label">Services <span style="color: red;">*</span></label>
+                  <input [class.is-invalid]="formValue.get('services')?.invalid && formValue.get('services')?.touched" type="text" class="form-control" formControlName="services"  placeholder="chai , coffee">
+
+                  <div *ngIf="formValue.get('services')?.hasError('required') && formValue.get('services')?.touched" class="text-danger">
+                    Service is required.
+                  </div>
+
+                  <div *ngIf="formValue.get('services')?.hasError('maxlength') && formValue.get('services')?.touched" class="text-danger">
+                    Service must not exceed 50 characters.
+                  </div>
                 </div>
               </form>
         </div>

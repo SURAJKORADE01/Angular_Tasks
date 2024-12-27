@@ -21,9 +21,16 @@ export class ApiService
   constructor(private _http: HttpClient) { }
 
   //POST request
-  postRestaurent(data:any ) 
+  postRestaurent(data:any) 
   {
     return this._http.post<any>("http://localhost:3000/posts", data).pipe(map((res:any)=>{
+      return res;
+    }))
+  }
+
+  postSignUp(data : any)
+  {
+    return this._http.post<any>("http://localhost:3000/signup", data).pipe(map((res:any)=>{
       return res;
     }))
   }
